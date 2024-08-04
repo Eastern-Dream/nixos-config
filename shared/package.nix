@@ -13,7 +13,6 @@
     discord
     
     # Miscellaneous
-    
     rclone
 
     # Multimedia
@@ -35,7 +34,12 @@
     libisoburn
     busybox
     file
-    libva-utils
+    fuseiso
+    iat
+
+
+
+    # Components
     nixd
     wl-clipboard
 
@@ -45,15 +49,6 @@
     unrar
     lzop
     lzip
-
-
-    # Archival tools, adds a bunch for Ark optional deps so it can extract most formats
-    p7zip
-    unar
-    unrar
-    lzop
-    lzip
-
 
     # System information
     fastfetch
@@ -65,5 +60,7 @@
     dmidecode
     pciutils
     cpufrequtils
+    sysfsutils
+    libva-utils
   ]; 
 }

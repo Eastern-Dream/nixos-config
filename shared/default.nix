@@ -1,4 +1,4 @@
-{ ... }:
+{ config, lib, ... }:
 # Common shared config that I want on PERMANENTLY for all systems
 {
   imports =
