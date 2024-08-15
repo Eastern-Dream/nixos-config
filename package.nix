@@ -37,6 +37,15 @@
     file
     libva-utils
     nixd
+    wl-clipboard
+
+    # Archival tools, adds a bunch for Ark optional deps so it can extract most formats
+    p7zip
+    unar
+    unrar
+    lzop
+    lzip
+
 
     # Archival tools, adds a bunch for Ark optional deps so it can extract most formats
     p7zip
