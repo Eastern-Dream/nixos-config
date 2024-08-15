@@ -13,7 +13,7 @@
     discord
     
     # Miscellaneous
-    unar
+    
     rclone
 
     # Multimedia
@@ -37,6 +37,14 @@
     file
     libva-utils
     nixd
+
+    # Archival tools, adds a bunch for Ark optional deps so it can extract most formats
+    p7zip
+    unar
+    unrar
+    lzop
+    lzip
+
 
     # System information
     fastfetch
