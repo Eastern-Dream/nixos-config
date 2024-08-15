@@ -10,30 +10,24 @@
     [ # Include the results of the hardware scan.
       /etc/nixos/hardware-configuration.nix
 
+      # Home manager
+      <home-manager/nixos>
+
       # Permanent shared config
       ./shared/default.nix
 
-      # Identity
+      # Feature module
+      ./feature/default.nix
+      
+      # System identity
       ./identity.nix
 
-      # Add gaming
-      ./gaming.nix
-
-      # Add music
-      ./music.nix
-
-      # Add virtualization
-      ./virtualisation/default.nix
-
-      # Add printing capability
-      ./printing.nix
-
-      # Add VPN and torrenting
-      ./vpn.nix
+      # Home-manager
+      ./home.nix
     ];
 
   # Zen kernel
-  boot.kernelPackages = pkgs.linuxKernel.packages.linux_zen;
+  boot.kernelPackages = pkgs.linuxKernel.packages.linux_lqx;
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 

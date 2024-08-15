@@ -19,11 +19,11 @@
         ];
     };
 
-    # Fixes IM on some application
-    environment.variables = {
-        GTK_IM_MODULE="xim";
-        SDL_IM_MODULE="fcitx";
-    };
+    # Fixes IM on some application, don't use GTK_IM_MODULE="xim" because it breaks wayland apps IM
+    # environment.variables = {
+    #     GTK_IM_MODULE="xim";
+    #     SDL_IM_MODULE="fcitx";
+    # };
 
     # Asian font
     fonts.packages = with pkgs; [
