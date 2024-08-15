@@ -1,4 +1,4 @@
-{ config, lib, ... }:
+{ config, lib, pkgs, ... }:
 # Common shared config that I want on PERMANENTLY for all systems
 {
   imports =
@@ -58,6 +58,8 @@
   programs.appimage = {
     enable = true;
     binfmt = true;
+    package = pkgs.appimage-run.override {
+      extraPkgs = pkgs: [ pkgs.icu ];
+    };
   };
-
 }
