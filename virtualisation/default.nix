@@ -32,6 +32,7 @@
         podman
         distrobox
         virtiofsd
+        quickemu
     ];
     
     # Add user to required group
