@@ -7,6 +7,7 @@ with lib;
       default = "roland";
       description = "My preferred username";
     };
+    
     hostname = mkOption {
       type = types.str;
       default = "workstation";
