@@ -16,16 +16,6 @@ lib.mkIf (config.identity.hostname == "workstation") {
         cgroup_controllers = [ "cpu", "memory", "blkio", "cpuset", "cpuacct" ]
     '';
 
-    # virtualisation.libvirtd.qemu.verbatimConfig = ''
-    #     cgroup_device_acl = [
-    #         "/dev/null", "/dev/full", "/dev/zero",
-    #         "/dev/random", "/dev/urandom",
-    #         "/dev/ptmx", "/dev/kvm",
-    #         "/dev/kvmfr0"
-    #     ]
-    # '';
-
-
     # IOMMU/VFIO/PCI Passthrough crap
     boot.kernelParams = [
         "intel_iommu=on"

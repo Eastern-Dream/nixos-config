@@ -10,6 +10,31 @@
     /* The home.stateVersion option does not have a default and must be set */
     home.stateVersion = "24.05";
 
+    # QEMU system setup
+    dconf.settings = {
+      "org/virt-manager/virt-manager/connections" = {
+        autoconnect = ["qemu:///system"];
+        uris = ["qemu:///system"];
+      };
+    };
+
+    # Git config
+    home.file.".gitconfig".text = ''
+      [user]
+        email = ${config.identity.gitEmail}
+        name = ${config.identity.gitUsername}
+      [ssh]
+        postBuffer = 524288000
+      [url "ssh://git@github.com/"]
+        insteadOf = https://github.com/
+    '';
+
+    # Steam flatpak IM fix
+    home.file.".local/share/flatpak/overrides/com.valvesoftware.Steam".text = ''
+      [Environment]
+      GTK_IM_MODULE=xim
+    '';
+
     # GTK IM workaround on Wayland, the last line is added, the rest above it was already there before I started implementation
     home.file.".gtkrc-2.0".text = ''
       gtk-theme-name=""
@@ -64,6 +89,7 @@
       gtk-im-module=fcitx
     '';
 
+    # Deadbeef plugins
     home.file.".local/lib/deadbeef/discord_presence.so".source = ./artifact/discord_presence.so;
     home.file.".local/lib/deadbeef/mpris.so".source = ./artifact/mpris.so;
   };

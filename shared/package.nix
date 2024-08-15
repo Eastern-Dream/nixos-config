@@ -13,11 +13,12 @@
     discord
     
     # Miscellaneous
-    rclone
+    # rclone
 
     # Multimedia
+    audacity
     obs-studio
-    libreoffice-qt
+    libreoffice-qt6-still
     gimp
     vlc
   ];
@@ -29,16 +30,17 @@
     gparted
     appimage-run
     coreutils
-    cdrtools
     nix-index
-    libisoburn
     busybox
     file
+    xorg.xwininfo
+
+    # ISO/image related tools
     fuseiso
     iat
-
-
-
+    libisoburn
+    cdrtools
+    
     # Components
     nixd
     wl-clipboard

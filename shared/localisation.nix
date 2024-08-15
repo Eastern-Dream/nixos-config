@@ -20,10 +20,10 @@
     };
 
     # Fixes IM on some application, don't use GTK_IM_MODULE="xim" because it breaks wayland apps IM
-    # environment.variables = {
-    #     GTK_IM_MODULE="xim";
-    #     SDL_IM_MODULE="fcitx";
-    # };
+    environment.variables = {
+        # Only for QT 6.7+, which, by the virtue of using KDE plasma 6, I have
+        QT_IM_MODULES="wayland;fcitx;ibus";
+    };
 
     # Asian font
     fonts.packages = with pkgs; [
