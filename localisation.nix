@@ -8,6 +8,7 @@
         xkb.variant = "";
     };
 
+    # FCITX5 for japanese and vietnamese input
     i18n.inputMethod = {
         enabled = "fcitx5";
         fcitx5.waylandFrontend = true;
@@ -16,6 +17,11 @@
             fcitx5-gtk
             fcitx5-bamboo
         ];
+    };
+
+    environment.variables = {
+        GTK_IM_MODULE="xim";
+        SDL_IM_MODULE="fcitx";
     };
 
     # Asian font
