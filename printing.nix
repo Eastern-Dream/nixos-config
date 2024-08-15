@@ -13,6 +13,6 @@
     openFirewall = true;
   };
   environment.interactiveShellInit = ''
-    alias printer-scan='scanimage --resolution 300 --format tiff > ~/Documents/printer-scan/$(date -Iseconds).tiff'
+    alias printer-scan='scanimage --device-name="escl:https://192.168.1.4:443" --resolution 300 --format tiff > ~/Documents/printer-scan/$(date -Iseconds).tiff'
   '';
 }
