@@ -12,7 +12,10 @@
     nssmdns4 = true;
     openFirewall = true;
   };
+
+  environment.systemPackages = with pkgs; [ libtiff_t ];
+
   environment.interactiveShellInit = ''
-    alias printer-scan='scanimage --device-name="escl:https://192.168.1.4:443" --resolution 300 --format tiff > ~/Documents/printer-scan/$(date -Iseconds).tiff'
+    alias scan-start='scanimage --device-name="escl:https://192.168.1.4:443" --resolution 300 --format tiff > tiff2pdf -j > ~/Documents/printer-scan/$(date -Iseconds).pdf'
   '';
 }
