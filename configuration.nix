@@ -23,7 +23,7 @@
       ./music.nix
 
       # Add virtualization
-      ./virtualization.nix
+      ./virtualisation.nix
 
       # Add printing capability
       ./printing.nix
@@ -61,7 +61,7 @@
     description = "${config.identity.username}";
     extraGroups = [ "networkmanager" "wheel" ];
   };
-  
+
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
   # on your system were taken. It‘s perfectly fine and recommended to leave
