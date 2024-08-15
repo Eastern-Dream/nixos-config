@@ -11,7 +11,7 @@
       /etc/nixos/hardware-configuration.nix
 
       # Permanent shared config
-      ./shared.nix
+      ./shared/default.nix
 
       # Identity
       ./identity.nix
@@ -23,7 +23,7 @@
       ./music.nix
 
       # Add virtualization
-      ./virtualisation.nix
+      ./virtualisation/default.nix
 
       # Add printing capability
       ./printing.nix

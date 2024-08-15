@@ -19,6 +19,7 @@
         ];
     };
 
+    # Fixes IM on some application
     environment.variables = {
         GTK_IM_MODULE="xim";
         SDL_IM_MODULE="fcitx";
@@ -47,5 +48,8 @@
         LC_TIME = "en_US.UTF-8";
     };
 
-    i18n.supportedLocales = [ "en_US.UTF-8/UTF-8" ];
+    i18n.supportedLocales = [
+        "en_US.UTF-8/UTF-8"
+        "ja_JP.UTF-8/UTF-8"
+    ];
 }
