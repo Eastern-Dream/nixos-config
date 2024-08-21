@@ -53,7 +53,13 @@
   # Enable Bluetooth
   hardware.bluetooth.enable = true; # enables support for Bluetooth
   hardware.bluetooth.powerOnBoot = true; # powers up the default Bluetooth controller on boot
-
+  # Enable high fidelity playback codecs
+  hardware.bluetooth.settings = {
+    General = {
+      Enable = "Source,Sink,Media,Socket";
+    };
+  };
+  
   # Enable AppImage run wrapper
   programs.appimage = {
     enable = true;
