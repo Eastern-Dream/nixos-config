@@ -6,11 +6,15 @@
     firefox
     vscode
     wireshark
+    gdb
+    gdbgui
+    ghidra
     
     # Communication
     thunderbird
     vesktop
     discord
+    slack
     
     # Miscellaneous
     # rclone
@@ -34,6 +38,7 @@
     busybox
     file
     xorg.xwininfo
+    binutils
 
     # ISO/image related tools
     fuseiso
@@ -43,7 +48,7 @@
     
     # Components
     nixd
-    wl-clipboard
+    # wl-clipboard
 
     # Archival tools, adds a bunch for Ark optional deps so it can extract most formats
     p7zip
