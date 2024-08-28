@@ -25,7 +25,7 @@
   config = {
     virtualisation = {
       stack = true;
-      vboxKVM = true;
+      vboxKVM = false;
       vfio = true;
       looking-glass = true;
     };

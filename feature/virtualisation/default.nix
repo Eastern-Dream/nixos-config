@@ -1,5 +1,7 @@
 { config, pkgs, lib, ... }:
 
+with lib;
+
 {
     imports = [
         ./vfio.nix
@@ -7,13 +9,13 @@
     ];
 
     options.virtualisation = {
-        stack = lib.mkEnableOption "my virtualisation software stack";
-        vboxKVM = lib.mkEnableOption "KVM-backend for VirtualBox";
-        vfio = lib.mkEnableOption "VFIO";
-        looking-glass = lib.mkEnableOption "VFIO";
+        stack = mkEnableOption "my virtualisation software stack";
+        vboxKVM = mkEnableOption "KVM-backend for VirtualBox";
+        vfio = mkEnableOption "VFIO";
+        looking-glass = mkEnableOption "KVMFR Looking Glass capability";
     };
 
-    config = lib.mkIf (config.virtualisation.stack) {
+    config = mkIf (config.virtualisation.stack) {
 
         home-manager.users.${config.identity.username} = {
             dconf.settings = {
@@ -34,8 +36,15 @@
         # virtualisation.vmware.host.enable = true;
         # boot.kernelParams = [ "transparent_hugepage=never" ];
 
+        specialisation = { 
+            virtualboxUseKVMBackend.configuration = {
+                # KVM backend requires no hardening therefore can run on 6.9+ kernel  
+                config.virtualisation.vboxKVM = mkDefault true;
+            };
+        };
+
         # VirtualBox section
-        virtualisation.virtualbox.host = lib.mkMerge [
+        virtualisation.virtualbox.host = mkMerge [
 
             {
             enable = true;
@@ -43,7 +52,7 @@
             enableExtensionPack = true;
             }
 
-            (lib.mkIf (config.virtualisation.vboxKVM) {
+            (mkIf (config.virtualisation.vboxKVM) {
             # KVM backend requires no hardening therefore can run on 6.9+ kernel            
             enableKvm = true;
             enableHardening = false;
