@@ -26,22 +26,43 @@ with lib;
             };
         };
 
-        # Enable various virtualization features 
-        programs.virt-manager.enable = true;
-        virtualisation.libvirtd.enable = true;
-        virtualisation.containers.enable = true;
-        virtualisation.waydroid.enable = true;
-
-        # VMWare section
-        # virtualisation.vmware.host.enable = true;
-        # boot.kernelParams = [ "transparent_hugepage=never" ];
-
         specialisation = { 
-            virtualboxUseKVMBackend.configuration = {
+            virtualbox-use-KVM-backend.configuration = {
                 # KVM backend requires no hardening therefore can run on 6.9+ kernel  
                 config.virtualisation.vboxKVM = mkDefault true;
             };
         };
+
+        # Enable various virtualization features 
+        programs.virt-manager.enable = true;
+        virtualisation.libvirtd.enable = true;
+        virtualisation.waydroid.enable = true;
+
+        # Container section
+        virtualisation.containers.enable = true;
+        virtualisation.podman = {
+            dockerCompat = true;
+            enable = true;
+        };
+        virtualisation.oci-containers.backend = "podman";
+
+        # Useful other development tools
+        environment.systemPackages = with pkgs; [
+            dive # look into docker image layers
+            podman-tui # status of containers in the terminal
+            podman-compose
+
+            lazydocker
+            docker-compose # start group of containers for dev
+
+            distrobox
+            virtiofsd
+            quickemu
+        ];
+
+        # VMWare section
+        # virtualisation.vmware.host.enable = true;
+        # boot.kernelParams = [ "transparent_hugepage=never" ];
 
         # VirtualBox section
         virtualisation.virtualbox.host = mkMerge [
@@ -58,13 +79,6 @@ with lib;
             enableHardening = false;
             addNetworkInterface = false;
             })
-        ];
-
-        environment.systemPackages = with pkgs; [
-            podman
-            distrobox
-            virtiofsd
-            quickemu
         ];
         
         # Add user to required group

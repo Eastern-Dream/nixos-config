@@ -21,6 +21,9 @@
       
       # System identity
       ./identity.nix
+
+      # Current coursework config, currently doesnt work
+      # ./coursework.nix
     ];
   config = {
     virtualisation = {
@@ -31,7 +34,7 @@
     };
 
     # Zen kernel
-    boot.kernelPackages = pkgs.linuxKernel.packages.linux_lqx;
+    boot.kernelPackages = pkgs.linuxKernel.packages.linux_xanmod;
     boot.loader.systemd-boot.enable = true;
     boot.loader.efi.canTouchEfiVariables = true;
 

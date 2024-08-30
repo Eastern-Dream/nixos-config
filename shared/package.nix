@@ -6,7 +6,10 @@
     firefox
     vscode
     wireshark
+
+    # Reverse engineer crap
     gdb
+    pwndbg
     gdbgui
     ghidra
     
