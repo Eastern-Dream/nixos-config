@@ -21,9 +21,6 @@
       
       # System identity
       ./identity.nix
-
-      # Current coursework config, currently doesnt work
-      # ./coursework.nix
     ];
   config = {
     virtualisation = {

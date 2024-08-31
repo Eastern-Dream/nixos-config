@@ -40,11 +40,16 @@ with lib;
 
         # Container section
         virtualisation.containers.enable = true;
-        virtualisation.podman = {
-            dockerCompat = true;
-            enable = true;
-        };
-        virtualisation.oci-containers.backend = "podman";
+
+        virtualisation.docker.storageDriver = "btrfs";
+        virtualisation.docker.enable = true;
+        virtualisation.oci-containers.backend = "docker";
+        
+        # virtualisation.podman = {
+        #     dockerCompat = true;
+        #     enable = true;
+        # };
+        # virtualisation.oci-containers.backend = "podman";
 
         # Useful other development tools
         environment.systemPackages = with pkgs; [
@@ -82,6 +87,6 @@ with lib;
         ];
         
         # Add user to required group
-        users.users.${config.identity.username}.extraGroups = [ "libvirtd" "user-with-access-to-virtualbox" "vboxusers"];
+        users.users.${config.identity.username}.extraGroups = [ "libvirtd" "user-with-access-to-virtualbox" "vboxusers" "docker" ];
     };
 }
