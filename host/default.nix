@@ -1,6 +1,8 @@
-{ lib, ... }:
+{ config, lib, ... }:
+
 with lib;
 {
+  # All of these defaults to what workstation should have
   options.identity = {  
     username = mkOption {
       type = types.str;
@@ -25,4 +27,19 @@ with lib;
       description = "My preferred Git email";
     };
   };
+
+  imports = [
+    # Only import one, comment out what isn't this system!
+    ./workstation.nix
+    <nixos-hardware/common/gpu/nvidia/disable.nix>
+    # ./gram.nix
+
+  ];
+
+  config = {
+    fileSystems = {
+      "/".options = [ "compress=zstd" ];
+    };
+  };
+
 }

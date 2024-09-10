@@ -1,7 +1,9 @@
 { config, pkgs, lib, ... }:
 
 {
-    config = lib.mkIf (config.virtualisation.vfio && config.identity.hostname == "workstation") {
+    options.virtualisation.vfio = lib.mkEnableOption "VFIO";
+
+    config = lib.mkIf (config.virtualisation.vfio) {
         
         environment.systemPackages = with pkgs; [
             looking-glass-client

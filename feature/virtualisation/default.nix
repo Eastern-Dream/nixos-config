@@ -10,9 +10,8 @@ with lib;
 
     options.virtualisation = {
         stack = mkEnableOption "my virtualisation software stack";
-        vboxKVM = mkEnableOption "KVM-backend for VirtualBox";
-        vfio = mkEnableOption "VFIO";
-        looking-glass = mkEnableOption "KVMFR Looking Glass capability";
+        vboxKVM-spec = mkEnableOption "KVM-backend for VirtualBox specialisation";
+        vfio-spec = mkEnableOption "VFIO specialisation";
     };
 
     config = mkIf (config.virtualisation.stack) {
@@ -27,9 +26,26 @@ with lib;
         };
 
         specialisation = { 
-            virtualbox-use-KVM-backend.configuration = {
-                # KVM backend requires no hardening therefore can run on 6.9+ kernel  
-                config.virtualisation.vboxKVM = mkDefault true;
+            virtualbox-use-KVM-backend.configuration = mkIf (config.virtualisation.vboxKVM-spec) {
+                virtualisation.virtualbox.host = mkDefault {
+                    enable = true;
+                    # Long recompilation everytime, but needed for clipboard sharing for my config
+                    enableExtensionPack = true;
+                    enableKvm = true;
+                    addNetworkInterface = false;
+                };
+            };
+            use-vfio-looking-glass.configuration = mkIf (config.virtualisation.vfio-spec) {
+                # KVMFR currently only work on 6.9 and below, force older kernel
+                boot.kernelPackages = mkForce pkgs.linuxKernel.packages.linux_xanmod;
+                virtualisation.vfio = true;
+                virtualisation.looking-glass = true;
+                # Re-enable nvidia gpu for passthrough
+                disabledModules = [
+                    <nixos-hardware/common/gpu/nvidia/disable.nix>
+                ];
+                # Unmount windows partition (the drive is also passthrough)
+                # fileSystems."/mnt/windows-partition" = mkForce {};
             };
         };
 
@@ -70,21 +86,11 @@ with lib;
         # boot.kernelParams = [ "transparent_hugepage=never" ];
 
         # VirtualBox section
-        virtualisation.virtualbox.host = mkMerge [
-
-            {
+        virtualisation.virtualbox.host = {
             enable = true;
             # Long recompilation everytime, but needed for clipboard sharing for my config
             enableExtensionPack = true;
-            }
-
-            (mkIf (config.virtualisation.vboxKVM) {
-            # KVM backend requires no hardening therefore can run on 6.9+ kernel            
-            enableKvm = true;
-            enableHardening = false;
-            addNetworkInterface = false;
-            })
-        ];
+        };
         
         # Add user to required group
         users.users.${config.identity.username}.extraGroups = [ "libvirtd" "user-with-access-to-virtualbox" "vboxusers" "docker" ];

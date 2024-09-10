@@ -5,7 +5,7 @@
 { config, pkgs, lib, ... }:
 
 {
-  # Main import to turn shit off and on by just commenting it out
+  # Main import
   imports =
     [ # Include the results of the hardware scan.
       /etc/nixos/hardware-configuration.nix
@@ -19,39 +19,24 @@
       # Feature module
       ./feature/default.nix
       
-      # System identity
-      ./identity.nix
+      # System/host/identity/whatever you wanna call it
+      ./host/default.nix
     ];
   config = {
-    virtualisation = {
-      stack = true;
-      vboxKVM = false;
-      vfio = true;
-      looking-glass = true;
-    };
-
     # Zen kernel
-    boot.kernelPackages = pkgs.linuxKernel.packages.linux_xanmod;
+    boot.kernelPackages = pkgs.linuxKernel.packages.linux_zen;
     boot.loader.systemd-boot.enable = true;
     boot.loader.efi.canTouchEfiVariables = true;
-
-    # Fix a rare crash with my SSD model
-    boot.kernelParams = lib.mkIf (config.identity.hostname == "workstation") [
-      "nvme_core.default_ps_max_latency_us=0"
-    ];
 
     # Enable networking
     networking.networkmanager.enable = true;
     networking.hostName = "${config.identity.hostname}";
 
-    # Desktop Environment crap
-    services.xserver.enable = true;
-    services.desktopManager.plasma6.enable = true;
+    # Allow unfree packages
+    nixpkgs.config.allowUnfree = true;
 
-    services.displayManager= {
-      sddm.enable = true;
-      defaultSession = "plasma";
-    };
+    # Enable nix store optimization every time we build system config
+    nix.settings.auto-optimise-store = true;
 
     # Define a user account. Don't forget to set a password with ‘passwd’.
     users.users.${config.identity.username} = {
@@ -74,6 +59,20 @@
         [url "ssh://git@github.com/"]
           insteadOf = https://github.com/
       '';
+    };
+    home-manager.backupFileExtension = "backup";
+
+    # Enable sound with pipewire.
+    sound.enable = true;
+    hardware.pulseaudio.enable = false;
+    security.rtkit.enable = true;
+    services.pipewire = {
+      enable = true;
+      alsa.enable = true;
+      alsa.support32Bit = true;
+      pulse.enable = true;
+      # If you want to use JACK applications, uncomment this
+      #jack.enable = true;
     };
 
     # This value determines the NixOS release from which the default

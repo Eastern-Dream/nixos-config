@@ -12,34 +12,18 @@
       # Add some shell profile stuff
       ./shell-profile.nix
 
-      # Add nix-ld to run unpatched binary
-      ./nix-ld.nix
+      # Add nix-ld to run unpatched binary, its not frequently used that much
+      # ./nix-ld.nix
+
+      # Desktop environment crap
+      ./desktop-environment.nix
+
+      # Config that I have yet to categorize into a module
+      ./uncategorized.nix
     ];
 
   zramSwap.enable = true;
-
-  fileSystems = {
-    "/".options = [ "compress=zstd" ];
-  };
-
-  # Enable sound with pipewire.
-  sound.enable = true;
-  hardware.pulseaudio.enable = false;
-  security.rtkit.enable = true;
-  services.pipewire = {
-    enable = true;
-    alsa.enable = true;
-    alsa.support32Bit = true;
-    pulse.enable = true;
-    # If you want to use JACK applications, uncomment this
-    #jack.enable = true;
-  };
-
-  # Allow unfree packages
-  nixpkgs.config.allowUnfree = true;
-
-  # Enable nix store optimization every time we build system config
-  nix.settings.auto-optimise-store = true;
+  boot.supportedFilesystems = [ "ntfs" ];
 
   # Enable Flatpak
   services.flatpak.enable = true;
@@ -49,16 +33,6 @@
 
   # Need this for EasyEffects to work, among other things
   programs.dconf.enable = true;
-  
-  # Enable Bluetooth
-  hardware.bluetooth.enable = true; # enables support for Bluetooth
-  hardware.bluetooth.powerOnBoot = true; # powers up the default Bluetooth controller on boot
-  # Enable high fidelity playback codecs
-  hardware.bluetooth.settings = {
-    General = {
-      Enable = "Source,Sink,Media,Socket";
-    };
-  };
   
   # Enable AppImage run wrapper
   programs.appimage = {

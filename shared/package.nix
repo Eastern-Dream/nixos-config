@@ -8,10 +8,10 @@
     wireshark
 
     # Reverse engineer crap
-    gdb
-    pwndbg
-    gdbgui
-    ghidra
+    # gdb
+    # pwndbg
+    # gdbgui
+    # ghidra
     
     # Communication
     thunderbird
@@ -28,6 +28,7 @@
     libreoffice-qt6-still
     gimp
     vlc
+    mpv
   ];
 
   environment.systemPackages = with pkgs; [
@@ -51,7 +52,6 @@
     
     # Components
     nixd
-    # wl-clipboard
 
     # Archival tools, adds a bunch for Ark optional deps so it can extract most formats
     p7zip

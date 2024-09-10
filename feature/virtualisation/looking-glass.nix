@@ -1,6 +1,8 @@
 { config, pkgs, lib, ... }:
 
 {
+    options.virtualisation.looking-glass= lib.mkEnableOption "KVMFR Looking Glass capability";
+
     config = lib.mkIf (config.virtualisation.looking-glass) {
 
         environment.systemPackages = with pkgs; [
