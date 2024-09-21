@@ -37,6 +37,7 @@ with lib;
             };
             use-vfio-looking-glass.configuration = mkIf (config.virtualisation.vfio-spec) {
                 # KVMFR currently only work on 6.9 and below, force older kernel
+                # xanmod has preempt dynamic, so it is okay to have preempt=full in params
                 boot.kernelPackages = mkForce pkgs.linuxKernel.packages.linux_xanmod;
                 virtualisation.vfio = true;
                 virtualisation.looking-glass = true;
