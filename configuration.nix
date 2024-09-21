@@ -25,6 +25,7 @@
   config = {
     # Zen kernel
     boot.kernelPackages = pkgs.linuxKernel.packages.linux_zen;
+    boot.kernelParams = [ "preempt=full" ];
     boot.loader.systemd-boot.enable = true;
     boot.loader.efi.canTouchEfiVariables = true;
 
