@@ -1,6 +1,24 @@
 { config, pkgs, ... }:
 
 {
+    # Gamescope nested workaround (https://github.com/NixOS/nixpkgs/issues/162562#issuecomment-1229444338)
+    nixpkgs.config.packageOverrides = pkgs: {
+        steam = pkgs.steam.override {
+            extraPkgs = pkgs: with pkgs; [
+                xorg.libXcursor
+                xorg.libXi
+                xorg.libXinerama
+                xorg.libXScrnSaver
+                libpng
+                libpulseaudio
+                libvorbis
+                stdenv.cc.cc.lib
+                libkrb5
+                keyutils
+            ];
+        };
+    };
+    
     # udev rules for tablets and controllers
     hardware.opentabletdriver.enable = true;
 
