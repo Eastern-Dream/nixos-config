@@ -27,7 +27,7 @@
 
     # Asian font
     fonts.packages = with pkgs; [
-        noto-fonts-cjk
+      noto-fonts-cjk
     ];
 
     # Set your time zone.

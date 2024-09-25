@@ -1,7 +1,7 @@
 { config, pkgs, ... }:
 
 {
-    # Gamescope nested workaround (https://github.com/NixOS/nixpkgs/issues/162562#issuecomment-1229444338)
+    # Gamescope nested session workaround (https://github.com/NixOS/nixpkgs/issues/162562#issuecomment-1229444338)
     nixpkgs.config.packageOverrides = pkgs: {
         steam = pkgs.steam.override {
             extraPkgs = pkgs: with pkgs; [
@@ -15,8 +15,15 @@
                 stdenv.cc.cc.lib
                 libkrb5
                 keyutils
+                # Fix CJK font
+                noto-fonts-cjk
             ];
         };
+    };
+    
+    programs.corectrl = {
+        enable = true;
+        gpuOverclock.enable = true;
     };
     
     # udev rules for tablets and controllers
@@ -29,10 +36,6 @@
         enable = true;
         remotePlay.openFirewall = true;
     };
-
-    # If native steam is used, then dont need these 2
-    # hardware.opengl.driSupport32Bit = true;
-    # hardware.steam-hardware.enable = true;
 
     users.users.${config.identity.username}.packages = with pkgs; [
         lutris

@@ -72,5 +72,6 @@
     cpufrequtils
     sysfsutils
     libva-utils
+    amdgpu_top
   ]; 
 }
