@@ -17,7 +17,7 @@
 
     # Mount other windows partition read-only
     fileSystems."/mnt/windows-partition" = {
-      device = "/dev/nvme0n1p3";
+      device = "/dev/disk/by-uuid/5E461FC3461F9ABB";
       fsType = "ntfs-3g"; 
       options = [ "ro" ];
     };
