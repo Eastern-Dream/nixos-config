@@ -4,14 +4,13 @@ with lib;
 
 {
     imports = [
-        ./vfio.nix
         ./looking-glass.nix
     ];
 
     options.virtualisation = {
         stack = mkEnableOption "my virtualisation software stack";
         vboxKVM-spec = mkEnableOption "KVM-backend for VirtualBox specialisation";
-        vfio-spec = mkEnableOption "VFIO specialisation";
+        vfio-spec = mkEnableOption "GPU Passthrough Looking Glass specialisation";
     };
 
     config = mkIf (config.virtualisation.stack) {
@@ -25,8 +24,8 @@ with lib;
             };
         };
 
-        specialisation = { 
-            virtualbox-use-KVM-backend.configuration = mkIf (config.virtualisation.vboxKVM-spec) {
+        specialisation = mkIf (config.virtualisation.vboxKVM-spec) { 
+            virtualbox-use-KVM-backend.configuration = {
                 virtualisation.virtualbox.host = mkDefault {
                     enable = true;
                     # Long recompilation everytime, but needed for clipboard sharing for my config
@@ -34,19 +33,6 @@ with lib;
                     enableKvm = true;
                     addNetworkInterface = false;
                 };
-            };
-            use-vfio-looking-glass.configuration = mkIf (config.virtualisation.vfio-spec) {
-                # KVMFR currently only work on 6.9 and below, force older kernel
-                # xanmod has preempt dynamic, so it is okay to have preempt=full in params
-                boot.kernelPackages = mkForce pkgs.linuxKernel.packages.linux_xanmod;
-                virtualisation.vfio = true;
-                virtualisation.looking-glass = true;
-                # Re-enable nvidia gpu for passthrough
-                disabledModules = [
-                    <nixos-hardware/common/gpu/nvidia/disable.nix>
-                ];
-                # Unmount windows partition (the drive is also passthrough)
-                # fileSystems."/mnt/windows-partition" = mkForce {};
             };
         };
 
@@ -92,7 +78,23 @@ with lib;
             # Long recompilation everytime, but needed for clipboard sharing for my config
             enableExtensionPack = true;
         };
-        
+
+        # Hyper-V enlightenments
+        boot.extraModprobeConfig = ''
+            options kvm_intel nested=1
+            options kvm ignore_msrs=1
+        '';
+
+        # IOMMU/VFIO/PCI Passthrough crap
+        boot.kernelParams = [
+            "intel_iommu=on"
+        ];
+
+        boot.initrd.kernelModules = [
+            "vfio_pci"
+            "vfio"
+            "vfio_iommu_type1"
+        ];
         # Add user to required group
         users.users.${config.identity.username}.extraGroups = [ "libvirtd" "user-with-access-to-virtualbox" "vboxusers" "docker" ];
     };

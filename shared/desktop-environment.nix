@@ -9,4 +9,5 @@
     sddm.enable = true;
     defaultSession = "plasma";
   };
+  programs.kdeconnect.enable = true; 
 }

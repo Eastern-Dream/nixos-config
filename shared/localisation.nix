@@ -61,21 +61,21 @@
     '';
 
     # GTK IM workaround on Wayland, the last line is added, the rest above it was already there before I started implementation
-    home.file.".gtkrc-2.0".text = ''
-      gtk-theme-name=""
-      gtk-sound-theme-name="ocean"
-      gtk-enable-animations=1
-      gtk-primary-button-warps-slider=1
-      gtk-toolbar-style=3
-      gtk-menu-images=1
-      gtk-button-images=1
-      gtk-cursor-theme-size=24
-      gtk-cursor-theme-name="breeze_cursors"
-      gtk-icon-theme-name="breeze"
-      gtk-font-name="Noto Sans,  10"
+    # home.file.".gtkrc-2.0".text = ''
+    #   gtk-theme-name=""
+    #   gtk-sound-theme-name="ocean"
+    #   gtk-enable-animations=1
+    #   gtk-primary-button-warps-slider=1
+    #   gtk-toolbar-style=3
+    #   gtk-menu-images=1
+    #   gtk-button-images=1
+    #   gtk-cursor-theme-size=24
+    #   gtk-cursor-theme-name="breeze_cursors"
+    #   gtk-icon-theme-name="breeze"
+    #   gtk-font-name="Noto Sans,  10"
 
-      gtk-im-module="fcitx"
-    '';
+    #   gtk-im-module="fcitx"
+    # '';
 
     home.file.".config/gtk-3.0/settings.ini".text = ''
       [Settings]

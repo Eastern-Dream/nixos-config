@@ -6,21 +6,12 @@
     firefox
     vscode
     wireshark
-
-    # Reverse engineer crap
-    # gdb
-    # pwndbg
-    # gdbgui
-    # ghidra
     
     # Communication
     thunderbird
     vesktop
     discord
     slack
-    
-    # Miscellaneous
-    # rclone
 
     # Multimedia
     audacity
@@ -59,6 +50,7 @@
     unrar
     lzop
     lzip
+    pigz
 
     # System information
     fastfetch
@@ -73,5 +65,5 @@
     sysfsutils
     libva-utils
     amdgpu_top
-  ]; 
+  ];
 }
