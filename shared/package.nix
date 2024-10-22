@@ -34,6 +34,7 @@
     file
     xorg.xwininfo
     binutils
+    devenv
 
     # ISO/image related tools
     fuseiso

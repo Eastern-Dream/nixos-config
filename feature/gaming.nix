@@ -39,7 +39,7 @@
             FastConnectable = true;
         };
     };
-
+    boot.extraModprobeConfig = '' options bluetooth disable_ertm=1 '';
     
     # native steam stuff 
     programs.gamemode.enable = true;
