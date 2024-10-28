@@ -6,6 +6,7 @@
     firefox
     vscode
     wireshark
+    google-chrome
     
     # Communication
     thunderbird

@@ -28,18 +28,17 @@
     
     # udev rules for tablets and controllers
     hardware.opentabletdriver.enable = true;
-    hardware.xone.enable = true;
-    hardware.xpadneo.enable = true; 
-    # Need this for xbox bluetooth to work 
+    # Enable xbox controller
+    hardware.xpadneo.enable = true;
+
     hardware.bluetooth.settings = {
-        General = {
-            Privacy = "device";
-            JustWorksRepairing = "always";
-            Class = "0x000100";
-            FastConnectable = true;
-        };
+    General = {
+        Privacy = "device";
+        JustWorksRepairing = "always";
+        Class = "0x000100";
+        FastConnectable = true;
     };
-    boot.extraModprobeConfig = '' options bluetooth disable_ertm=1 '';
+    };
     
     # native steam stuff 
     programs.gamemode.enable = true;
