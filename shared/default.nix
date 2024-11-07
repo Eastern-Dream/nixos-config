@@ -12,6 +12,9 @@
       # Add some shell profile stuff
       ./shell-profile.nix
 
+      # Add devenv
+      ./devenv.nix
+
       # Add nix-ld to run unpatched binary, its not frequently used that much
       # ./nix-ld.nix
 
