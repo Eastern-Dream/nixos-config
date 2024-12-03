@@ -16,5 +16,6 @@
     boot.extraModprobeConfig = ''
       blacklist int3403_thermal
     '';
+    boot.kernelParams = ["acpi_mask_gpe=0x6E"];
   };
 }
