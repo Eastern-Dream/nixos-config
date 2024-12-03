@@ -35,6 +35,11 @@
 
     # Allow unfree packages
     nixpkgs.config.allowUnfree = true;
+    nixpkgs.config.permittedInsecurePackages = [
+      "dotnet-runtime-6.0.36"
+      "dotnet-sdk-6.0.428"
+      "dotnet-sdk-wrapped-6.0.428"
+    ];
 
     # Enable nix store optimization every time we build system config
     nix.settings.auto-optimise-store = true;
@@ -64,7 +69,7 @@
     home-manager.backupFileExtension = "backup";
 
     # Enable sound with pipewire.
-    sound.enable = true;
+    # sound.enable = true;
     hardware.pulseaudio.enable = false;
     security.rtkit.enable = true;
     services.pipewire = {

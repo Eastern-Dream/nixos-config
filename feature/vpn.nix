@@ -7,7 +7,7 @@
 
 
     users.users.${config.identity.username}.packages = with pkgs; [
-        qbittorrent-qt5
+        qbittorrent
         protonvpn-gui
     ];
 }

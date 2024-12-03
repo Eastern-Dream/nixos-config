@@ -13,7 +13,7 @@
     openFirewall = true;
   };
 
-  environment.systemPackages = with pkgs; [ libtiff_t ];
+  environment.systemPackages = with pkgs; [ libtiff ];
 
   environment.interactiveShellInit = ''
     alias scan-start='TEMPFILE=$(mktemp) && \

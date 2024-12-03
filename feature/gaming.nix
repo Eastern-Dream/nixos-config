@@ -16,15 +16,15 @@
                 libkrb5
                 keyutils
                 # Fix CJK font
-                noto-fonts-cjk
+                noto-fonts-cjk-sans
             ];
         };
     };
     
-    programs.corectrl = {
-        enable = true;
-        gpuOverclock.enable = true;
-    };
+    # programs.corectrl = {
+    #     enable = true;
+    #     gpuOverclock.enable = true;
+    # };
     
     # udev rules for tablets and controllers
     hardware.opentabletdriver.enable = true;
