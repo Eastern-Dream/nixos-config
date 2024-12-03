@@ -44,15 +44,15 @@ with lib;
         # Container section
         virtualisation.containers.enable = true;
 
-        virtualisation.docker.storageDriver = "btrfs";
-        virtualisation.docker.enable = true;
-        virtualisation.oci-containers.backend = "docker";
+        # virtualisation.docker.storageDriver = "btrfs";
+        # virtualisation.docker.enable = true;
+        # virtualisation.oci-containers.backend = "docker";
         
-        # virtualisation.podman = {
-        #     dockerCompat = true;
-        #     enable = true;
-        # };
-        # virtualisation.oci-containers.backend = "podman";
+        virtualisation.podman = {
+            dockerCompat = true;
+            enable = true;
+        };
+        virtualisation.oci-containers.backend = "podman";
 
         # Useful other development tools
         environment.systemPackages = with pkgs; [
@@ -60,8 +60,8 @@ with lib;
             podman-tui # status of containers in the terminal
             podman-compose
 
-            lazydocker
-            docker-compose # start group of containers for dev
+            #lazydocker
+            #docker-compose # start group of containers for dev
 
             distrobox
             virtiofsd
