@@ -46,6 +46,8 @@
     programs.steam = {
         enable = true;
         remotePlay.openFirewall = true;
+        localNetworkGameTransfers.openFirewall = true;
+        #gamescopeSession.enable = true;
     };
 
     users.users.${config.identity.username}.packages = with pkgs; [
