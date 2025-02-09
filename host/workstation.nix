@@ -6,8 +6,8 @@
 
     virtualisation = {
       stack = true;
-      vboxKVM-spec = true;
-      vfio-spec = true;
+      vboxKVM-spec = false;
+      vfio-spec = false;
     };
 
     # Fix a rare crash with my SSD model
