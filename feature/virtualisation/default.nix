@@ -76,7 +76,7 @@ with lib;
         virtualisation.virtualbox.host = {
             enable = true;
             # Long recompilation everytime, but needed for clipboard sharing for my config
-            enableExtensionPack = true;
+            # enableExtensionPack = true;
         };
 
         # Hyper-V enlightenments
