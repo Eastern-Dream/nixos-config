@@ -26,6 +26,7 @@
     # Essential tools
     wget
     git
+    git-lfs
     gparted
     appimage-run
     coreutils
