@@ -8,6 +8,7 @@
 
         # Player
         deadbeef
+        tauon
 
         # Dependencies
         opusTools
