@@ -18,6 +18,7 @@ in
                 stdenv.cc.cc.lib
                 libkrb5
                 keyutils
+                mangohud
                 # Fix CJK font
                 noto-fonts-cjk-sans
             ];
@@ -37,7 +38,14 @@ in
             FastConnectable = true;
         };
     };
-    
+
+    # Fix dualshock5 controller
+    hardware.bluetooth.input = {
+        General = {
+            UserspaceHID = true;
+        };
+    };
+
     # native steam stuff 
     programs.gamemode.enable = true;
     programs.gamescope.enable = true;
@@ -45,17 +53,14 @@ in
         enable = true;
         remotePlay.openFirewall = true;
         localNetworkGameTransfers.openFirewall = true;
-        # gamescopeSession = {
-        #     enable = true;
-        #     args = [ "-e" "--hdr-enabled" "--xwayland-count 2" ];
-        # };
     };
 
     environment.interactiveShellInit = ''
         alias my-gamescope='\
         STEAM_MULTIPLE_XWAYLANDS=1 \
         gamescope -e -W 3840 -H 2160 -r 120 --adaptive-sync --xwayland-count 2 \
-        --hdr-enabled --hdr-itm-enable --hdr-itm-sdr-nits 300 --hdr-debug-force-output -- steam -gamepadui -steamos3 -steampal -steamdeck -pipewire-dmabuf'
+        --hdr-enabled --hdr-itm-enable --hdr-itm-sdr-nits 400 -- \
+        steam -gamepadui -steamos3 -steampal -steamdeck -pipewire-dmabuf'
     '';
         # WINEDLLOVERRIDES=dxgi=n \
         # STEAM_GAMESCOPE_COLOR_TOYS=1 \
@@ -68,6 +73,8 @@ in
     users.users.${config.identity.username}.packages = with pkgs; [
         unstable.lutris
         prismlauncher
+        # Attempting fix dualshock4 controller
+        python312Packages.ds4drv
     ];
 
 }
