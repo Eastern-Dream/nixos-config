@@ -47,14 +47,18 @@ in
     };
 
     # native steam stuff 
-    programs.gamemode.enable = true;
-    programs.gamescope.enable = true;
     programs.steam = {
         enable = true;
         remotePlay.openFirewall = true;
         localNetworkGameTransfers.openFirewall = true;
     };
 
+    # Gamescope stuff
+    programs.gamescope = {
+        enable = true;
+        capSysNice = true;
+    };
+    # gamescope tty args
     environment.interactiveShellInit = ''
         alias my-gamescope='\
         STEAM_MULTIPLE_XWAYLANDS=1 \
@@ -62,14 +66,7 @@ in
         --hdr-enabled --hdr-itm-enable --hdr-itm-sdr-nits 400 -- \
         steam -gamepadui -steamos3 -steampal -steamdeck -pipewire-dmabuf'
     '';
-        # WINEDLLOVERRIDES=dxgi=n \
-        # STEAM_GAMESCOPE_COLOR_TOYS=1 \
-        # GAMESCOPE_VRR_ENABLED=1 \
-        # STEAM_GAMESCOPE_HDR_SUPPORTED=1 \
-        # STEAM_GAMESCOPE_VRR_SUPPORTED=1 \
-        # DXVK_HDR=1 \
-        # ENABLE_GAMESCOPE_WSI=1 \
-        # STEAM_GAMESCOPE_COLOR_MANAGED=1 \
+
     users.users.${config.identity.username}.packages = with pkgs; [
         unstable.lutris
         prismlauncher
