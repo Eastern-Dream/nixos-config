@@ -31,7 +31,8 @@ with lib;
   imports = [
     # Only import one, comment out what isn't this system!
     ./workstation.nix
-    <nixos-hardware/common/gpu/nvidia/disable.nix>
+    # dont care about nvidia thing anymore im done with looking glass
+    # <nixos-hardware/common/gpu/nvidia/disable.nix>
     # ./gram.nix
 
   ];
