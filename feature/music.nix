@@ -18,9 +18,10 @@
         picard
     ];
 
-    home-manager.users.${config.identity.username} = {
-    # Deadbeef plugins
-        home.file.".local/lib/deadbeef/discord_presence.so".source = ../artifact/discord_presence.so;
-        home.file.".local/lib/deadbeef/mpris.so".source = ../artifact/mpris.so;
-    };
+    # tmpfile rules for deadbeef plugins
+    systemd.tmpfiles.rules = [ 
+        "L+ /home/${config.identity.username}/.local/lib/deadbeef/discord_presence.so - - - - /home/${config.identity.username}/.dotfile/nixos-config/artifact/discord_presence.so" 
+        "L+ /home/${config.identity.username}/.local/lib/deadbeef/mpris.so - - - - /home/${config.identity.username}/.dotfile/nixos-config/artifact/mpris.so" 
+    ];
+
 }

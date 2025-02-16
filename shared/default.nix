@@ -21,8 +21,8 @@
       # Desktop environment crap
       ./desktop-environment.nix
 
-      # Config that I have yet to categorize into a module
-      ./uncategorized.nix
+      # MPV Shader
+      ./mpv-anime4k-shader.nix
     ];
 
   zramSwap.enable = true;
@@ -45,4 +45,9 @@
       extraPkgs = pkgs: [ pkgs.icu ];
     };
   };
+
+  # tmpfiles for gitconfig
+  systemd.tmpfiles.rules = [
+    "f+ /home/${config.identity.username}/.gitconfig - - - - [user]\\nemail = ${config.identity.gitEmail}\\nname = ${config.identity.gitUsername}\\n[ssh]\\npostBuffer = 524288000\\n[url \"ssh://git@github.com/\"]\\ninsteadOf = https://github.com/"
+  ];
 }

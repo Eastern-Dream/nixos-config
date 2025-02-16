@@ -15,14 +15,14 @@ with lib;
 
     config = mkIf (config.virtualisation.stack) {
 
-        home-manager.users.${config.identity.username} = {
-            dconf.settings = {
-                "org/virt-manager/virt-manager/connections" = {
-                    autoconnect = ["qemu:///system"];
-                    uris = ["qemu:///system"];
-                };
-            };
-        };
+        # home-manager.users.${config.identity.username} = {
+        #     dconf.settings = {
+        #         "org/virt-manager/virt-manager/connections" = {
+        #             autoconnect = ["qemu:///system"];
+        #             uris = ["qemu:///system"];
+        #         };
+        #     };
+        # };
 
         specialisation = mkIf (config.virtualisation.vboxKVM-spec) { 
             virtualbox-use-KVM-backend.configuration = {
