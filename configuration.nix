@@ -11,7 +11,7 @@
       /etc/nixos/hardware-configuration.nix
 
       # Home manager
-      <home-manager/nixos>
+      # <home-manager/nixos>
 
       # Permanent shared config
       ./shared/default.nix
@@ -68,22 +68,22 @@
       extraGroups = [ "networkmanager" "wheel" ];
     };
 
-    home-manager.users.${config.identity.username} = {
-      /* The home.stateVersion option does not have a default and must be set */
-      home.stateVersion = "24.05";
+    # home-manager.users.${config.identity.username} = {
+    #   /* The home.stateVersion option does not have a default and must be set */
+    #   home.stateVersion = "24.05";
 
-      # Git config
-      home.file.".gitconfig".text = ''
-        [user]
-          email = ${config.identity.gitEmail}
-          name = ${config.identity.gitUsername}
-        [ssh]
-          postBuffer = 524288000
-        [url "ssh://git@github.com/"]
-          insteadOf = https://github.com/
-      '';
-    };
-    home-manager.backupFileExtension = "backup";
+    #   # Git config
+    #   home.file.".gitconfig".text = ''
+    #     [user]
+    #       email = ${config.identity.gitEmail}
+    #       name = ${config.identity.gitUsername}
+    #     [ssh]
+    #       postBuffer = 524288000
+    #     [url "ssh://git@github.com/"]
+    #       insteadOf = https://github.com/
+    #   '';
+    # };
+    # home-manager.backupFileExtension = "backup";
 
     # Enable sound with pipewire.
     # sound.enable = true;
