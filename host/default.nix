@@ -30,22 +30,11 @@ with lib;
 
   imports = [
     # Only import one, comment out what isn't this system!
-    ./workstation.nix
+    # ./workstation.nix
     # dont care about nvidia thing anymore im done with looking glass
     # <nixos-hardware/common/gpu/nvidia/disable.nix>
     # ./gram.nix
 
   ];
-
-  config = {
-    fileSystems = {
-      "/".options = [ "compress=zstd" ];
-      "/run/media/${config.identity.username}/m482" = {
-        device = "/dev/disk/by-uuid/09eef7c9-fd23-427a-9eba-f9c730516f2b";
-        fsType = "btrfs";
-        options = [ "compress=zstd" ];
-      };
-    };
-  };
 
 }
