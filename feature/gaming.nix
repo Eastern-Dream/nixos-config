@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, lib, ... }:
 
 let
   unstable = import <nixos-unstable> { config = { allowUnfree = true; }; };
@@ -56,14 +56,14 @@ in
     # Gamescope stuff
     programs.gamescope = {
         enable = true;
-        capSysNice = true;
+       # capSysNice = true;
     };
     # gamescope tty args
     environment.interactiveShellInit = ''
         alias my-gamescope='\
         STEAM_MULTIPLE_XWAYLANDS=1 \
         gamescope -e -W 3840 -H 2160 -r 120 --adaptive-sync --xwayland-count 2 \
-        --hdr-enabled --hdr-itm-enable --hdr-itm-sdr-nits 400 -- \
+        --hdr-enabled -- \
         steam -gamepadui -steamos3 -steampal -steamdeck -pipewire-dmabuf'
     '';
 

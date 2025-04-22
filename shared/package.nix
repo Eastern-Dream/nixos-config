@@ -1,5 +1,8 @@
 { config, pkgs, ... }:
 
+let
+  unstable = import <nixos-unstable> { config = { allowUnfree = true; }; };
+in
 {
   users.users.${config.identity.username}.packages = with pkgs; [
     # Productivity
@@ -19,7 +22,7 @@
     libreoffice-qt6-still
     gimp
     vlc
-    mpv
+    unstable.mpv
   ];
 
   environment.systemPackages = with pkgs; [

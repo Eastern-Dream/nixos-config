@@ -23,6 +23,9 @@
 
       # MPV Shader
       ./mpv-anime4k-shader.nix
+
+      # bitwarden crap
+      # ./bitwarden.nix
     ];
 
   zramSwap.enable = true;
@@ -45,6 +48,8 @@
       extraPkgs = pkgs: [ pkgs.icu ];
     };
   };
+
+  programs.bash.blesh.enable = true;
 
   # tmpfiles for gitconfig
   systemd.tmpfiles.rules = [
