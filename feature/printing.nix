@@ -1,6 +1,7 @@
 { config, pkgs, ... }:
 
 {
+  # TODO: fix stupid printer needing to re-setup in KDE settings every time i want to use it
   # Some options are exclusive to my printer at home
   services.printing.enable = true;
   hardware.sane.enable = true;

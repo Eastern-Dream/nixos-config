@@ -1,6 +1,7 @@
 { config, pkgs, ... }:
 
 {
+    # TODO: package the deadbeef plugins into zips and make them put it in nix store
     # Music related packages
     users.users.${config.identity.username}.packages = with pkgs; [
         # System-wide EQ
