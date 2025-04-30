@@ -1,0 +1,3 @@
+[submodule "artifact/ssh-config"]
+	path = artifact/ssh-config
+	url = https://github.com/Eastern-Dream/ssh-config
