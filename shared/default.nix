@@ -9,9 +9,6 @@
       # Add localisation properties
       ./localisation.nix
 
-      # Add some shell profile stuff
-      ./shell-profile.nix
-
       # Add devenv
       ./devenv.nix
 
@@ -53,6 +50,6 @@
 
   # tmpfiles for gitconfig
   systemd.tmpfiles.rules = [
-    "f+ /home/${config.identity.username}/.gitconfig - - - - [user]\\nemail = ${config.identity.gitEmail}\\nname = ${config.identity.gitUsername}\\n[ssh]\\npostBuffer = 524288000\\n[url \"ssh://git@github.com/\"]\\ninsteadOf = https://github.com/"
+    "f+ /home/${config.identity.username}/.gitconfig - - - - [user]\\nemail = ${config.identity.gitEmail}\\nname = Eastern-Dream\\n        signingkey = /home/${config.identity.gitUsername}/.ssh/bolt_cutter.pub\\n[ssh]\\npostBuffer = 524288000\\n[url \"ssh://git@github.com/\"]\\ninsteadOf = https://github.com/\\n[commit]\\n        gpgsign = true\\n[gpg]\\n        format = ssh"
   ];
 }

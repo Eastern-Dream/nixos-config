@@ -51,6 +51,7 @@ in
         enable = true;
         remotePlay.openFirewall = true;
         localNetworkGameTransfers.openFirewall = true;
+        extraCompatPackages = [ unstable.proton-ge-bin ];
     };
 
     # Gamescope stuff
