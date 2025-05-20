@@ -24,6 +24,15 @@ in
             ];
         };
     };
+
+    # native steam stuff 
+    programs.steam = {
+        enable = true;
+        remotePlay.openFirewall = true;
+        localNetworkGameTransfers.openFirewall = true;
+        extraCompatPackages = [ unstable.proton-ge-bin pkgs.steamtinkerlaunch ];
+    };
+
     
     # udev rules for tablets and controllers
     hardware.opentabletdriver.enable = true;
@@ -40,19 +49,12 @@ in
     };
 
     # Fix dualshock5 controller
-    hardware.bluetooth.input = {
-        General = {
-            UserspaceHID = true;
-        };
-    };
+    # hardware.bluetooth.input = {
+    #     General = {
+    #         UserspaceHID = true;
+    #     };
+    # };
 
-    # native steam stuff 
-    programs.steam = {
-        enable = true;
-        remotePlay.openFirewall = true;
-        localNetworkGameTransfers.openFirewall = true;
-        extraCompatPackages = [ unstable.proton-ge-bin ];
-    };
 
     # Gamescope stuff
     programs.gamescope = {
@@ -72,7 +74,8 @@ in
         unstable.lutris
         prismlauncher
         # Attempting fix dualshock4 controller
-        python312Packages.ds4drv
+        # python312Packages.ds4drv
+        # steamtinkerlaunch
     ];
 
 }
