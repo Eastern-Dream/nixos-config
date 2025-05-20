@@ -9,6 +9,8 @@ in
     firefox
     vscode
     wireshark
+    unstable.binaryninja-free
+    unstable.ghidra
     
     # Communication
     thunderbird
@@ -47,6 +49,7 @@ in
     
     # Components
     nixd
+    unstable.cloudflared
 
     # Archival tools, adds a bunch for Ark optional deps so it can extract most formats
     p7zip
