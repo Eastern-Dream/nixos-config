@@ -41,8 +41,6 @@ in
     # Cloudflare tunnel for services
     services.cloudflared = {
       package = unstable.cloudflared;
-      user = "roland";
-      group = "users";
       enable = true;
       tunnels = {
         "75ecfce5-82fc-4b78-b088-038d24c3c28d" = {
